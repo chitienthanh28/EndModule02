@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <img src="https://viblo.asia/logo_full.svg" alt="" width="50px">
+        <a style="margin-left: 10px;" class="navbar-brand" href="#">Bài Biết</a>
+        <a style="margin-left: 10px;" class="navbar-brand" href="#">Hỏi Đáp</a>
+        <a style="margin-left: 10px;" class="navbar-brand" href="#">Thảo Luận</a>
+        <img src="https://viblo.asia/images/vi-flag-32x48.png" alt="">VI
+        <a href="">Đăng nhập/Đăng ký</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div id="detail">
+      <div id="title"></div> <br>
+      <img
+        id="img"
+        src="https://images.viblo.asia/e6de922a-b90d-48b5-a38e-ad43a33cf833.png"
+        alt=""
+        width="704"
+        height="628"
+      />
+      <div id="slug"></div>
+      <div id="category_id"></div>
+      <div id="published_at"></div>
+      <div id="system"></div>
+      <div id="transliterated"></div>
+      <div id="category"></div>
+      <div id="myContent"></div>
+    </div>
+
+    <script>
+      $(document).ready(() => {
+        $.get(
+          "https://8c22c204b3474980b549d26caf5ab0eb.api.mockbin.io/",
+          (data, textStatus, xhr) => {
+            if (xhr.status === 200) {
+              data.forEach((element) => {
+                showData(element);
+              });
+            }
+          }
+        );
+        function showData(ojb) {
+          const title = document.getElementById("title");
+          title.innerText = ojb.title;
+          const slug = document.getElementById("slug");
+          slug.innerText = ojb.slug;
+          const category_id = document.getElementById("category_id");
+          category_id.innerText = ojb.category_id;
+          const published_at = document.getElementById("published_at");
+          published_at.innerText = ojb.published_at;
+          const system = document.getElementById("system");
+          system.innerText = ojb.system;
+          const transliterated = document.getElementById("transliterated");
+          transliterated.innerText = ojb.transliterated;
+          const category = document.getElementById("category");
+          category.innerText = ojb.category;
+          const myContent = document.getElementById("myContent");
+          myContent.innerText = ojb.myContent;
+        }
+      });
+    </script>
+  </body>
+</html>
